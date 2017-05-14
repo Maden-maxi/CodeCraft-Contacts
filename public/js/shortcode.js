@@ -17,6 +17,7 @@ jQuery(document).ready(function ($) {
 
     var $document = $(document);
     /**
+     * @since 1.0.0
      * Submitting form
      */
     $document.on('submit', '.cc_contacts_form', function (event){

@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @since 0.0.0
  * @package CC_Contacts
  * @subpackage CC_Contacts_Meta_Box
  */
@@ -101,6 +102,11 @@ class CC_Contacts_Meta_Box {
      *
      * @param $post WP_Post
      * @param $field array
+     *      Required. An array of arguments used to build meta field
+     *      @type string $name          Required.Name attribute of field
+     *      @type string $input         Required.Tag of field
+     *      @type string $input_type    Required.Type attribute of field
+     *      @type string $label         Optional.Label text of field
      */
     public function render_box_field( $post, $field ){
         $field = wp_parse_args( $field, $this->field_defaults );
