@@ -84,6 +84,7 @@ class CC_Contacts {
         require_once('includes/post-type.php');
         require_once('includes/contact-fields.php');
         require_once('includes/ajax.php');
+        require_once('includes/additional-rest-field.php');
         require_once('includes/class-rest-cc-contacts-controller.php');
         require_once('admin/class-meta-box.php');
         require_once('public/class-cc-contacts-shortcode-form.php');

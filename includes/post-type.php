@@ -38,7 +38,6 @@ function cc_contacts_post_type() {
         'capability_type'       => 'post',
         'show_in_rest'          => true,
         'rest_base'             => 'cc-contacts',
-        'rest_controller_class' => 'WP_REST_CC_Contacts_Controller',
     );
     register_post_type( 'cc_contacts', $args );
 
