@@ -6,7 +6,7 @@
  * Plugin Name: CodeCraft Contacts
  * Plugin URI:  https://developer.wordpress.org/plugins/the-basics/
  * Description: Contact forms plugin
- * Version:     0.0.0
+ * Version:     1.0.1
  * Author:      Denys Dnishchneko
  * Author URI:  https://developer.wordpress.org/
  * License:     GPL2
@@ -42,7 +42,7 @@ class CC_Contacts {
      * @var string
      */
 
-    private $version = '0.0.0';
+    private $version = '1.0.1';
 
     /**
      * Get a version of this class
@@ -74,16 +74,17 @@ class CC_Contacts {
      * Initializing actions such as enqueueing scripts and style, hooking to actions and filters
      */
     function __construct(){
-        $this->autoload();
+        $this->load();
     }
 
     /**
      * Load all files
      */
-    protected function autoload(){
+    protected function load(){
         require_once('includes/post-type.php');
         require_once('includes/contact-fields.php');
         require_once('includes/ajax.php');
+        require_once('includes/additional-rest-field.php');
         require_once('includes/class-rest-cc-contacts-controller.php');
         require_once('admin/class-meta-box.php');
         require_once('public/class-cc-contacts-shortcode-form.php');

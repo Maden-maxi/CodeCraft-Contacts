@@ -22,6 +22,7 @@ class CC_Contacts_Shortcode_Form {
     }
 
     /**
+     * @since 1.0.1
      * Load shortcode javascript and css files
      */
     function assets(){
@@ -29,16 +30,15 @@ class CC_Contacts_Shortcode_Form {
 
         wp_register_script( 'cc_contacts_shortcode', $path . 'js/shortcode.js', array('wp-api'), '0.0.0', true );
         wp_enqueue_script( 'cc_contacts_shortcode' );
-        wp_localize_script('cc_contacts_shortcode', 'CC_CONTACTS', array(
-            'url' => admin_url('admin-ajax.php'),
-            'nonce' => wp_create_nonce( 'cc_contacts_nonce' )
-        ));
 
         wp_register_style( 'cc_contacts_shortcode', $path . 'css/shortcode.css', array( 'dashicons' ) );
         wp_enqueue_style( 'cc_contacts_shortcode' );
     }
 
     /**
+     * Render shortcode
+     *
+     * @since 0.0.0
      * @param array $atts
      * @param null $content
      * @param string $tag

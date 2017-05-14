@@ -17,41 +17,41 @@ jQuery(document).ready(function ($) {
 
     var $document = $(document);
     /**
+     * @since 1.0.0
      * Submitting form
      */
     $document.on('submit', '.cc_contacts_form', function (event){
+        // prevent submitting form and reload page
         event.preventDefault();
-        var $this = $(this);
-        /*var fromData =  $(this).serializeObject();
-        var contact = new wp.api.models.CcContacts({
-            title: fromData.cc_name,
-            content: fromData.cc_message,
-            meta: {
-                cc_email: fromData.cc_email
-            }
-        });
-        var s = contact.save();
-        console.log(s);*/
 
-        console.log(event);
+        var $this = $(this);
+        // show load indicator
         $this.find('.dashicons-update').removeClass('hidden').addClass('spin');
-        $.ajax({
-            method: 'post',
-            url: CC_CONTACTS.url,
-            data: {
-                action: 'cc_contacts_submit',
-                nonce: CC_CONTACTS.nonce,
-                form_data: $this.serializeArray()
-            },
-            success: function (data, testStatus, jqXHR) {
-                data = JSON.parse(data);
-                if(data.success === true){
-                    $this.html(data.response_message);
-                }
+
+        var form_data = $this.serializeArray();
+        var save_data = {};
+        save_data.title = form_data[0].value;
+
+        // build object to save contact
+        for ( var i = 0, fieldLength = form_data.length; i < fieldLength ; i++  ) {
+            save_data[form_data[i].name] = form_data[i].value;
+            console.log( form_data[i].name, form_data[i].value );
+        }
+
+        var post = new wp.api.models.CcContacts( save_data );
+
+        post.save( save_data, {
+            /**
+             * Display message about success submit form
+             *
+             * @param model
+             * @param response
+             * @param options
+             */
+            success: function (model, response, options) {
+                console.log(model, response, options);
                 $this.find('dashicons-update').addClass('hidden').removeClass('spin');
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR, textStatus, errorThrown);
+                $this.html('<h2>Form submitted success</h2>');
             }
         });
 
