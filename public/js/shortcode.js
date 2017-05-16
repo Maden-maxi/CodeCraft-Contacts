@@ -35,7 +35,6 @@ jQuery(document).ready(function ($) {
         // build object to save contact
         for ( var i = 0, fieldLength = form_data.length; i < fieldLength ; i++  ) {
             save_data[form_data[i].name] = form_data[i].value;
-            console.log( form_data[i].name, form_data[i].value );
         }
 
         var post = new wp.api.models.CcContacts( save_data );
@@ -49,7 +48,6 @@ jQuery(document).ready(function ($) {
              * @param options
              */
             success: function (model, response, options) {
-                console.log(model, response, options);
                 $this.find('dashicons-update').addClass('hidden').removeClass('spin');
                 $this.html('<h2>Form submitted success</h2>');
             }
